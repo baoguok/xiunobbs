@@ -1,0 +1,12 @@
+{
+    "name": "VIP视频解析",
+    "brief": "VIP电影解析插件,提供各大影视网站的VIP电影解析服务，让你省去购买视频VIP费用。",
+    "version": "1.1",
+    "author": "anky",
+    "bbs_version": "4.0",
+    "installed": 1,
+    "enable": 1,
+    "hooks_rank": [],
+    "overwrites_rank": [],
+    "dependencies": []
+}

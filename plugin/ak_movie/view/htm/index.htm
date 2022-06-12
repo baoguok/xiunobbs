@@ -1,0 +1,257 @@
+<?php include _include(APP_PATH.'view/htm/header.inc.htm');?>
+<?php
+$jk=isset($_GET['jk'])?$_GET['jk']:'';
+$url=isset($_GET['url'])?$_GET['url']:'';
+?>
+<link rel="stylesheet" type="text/css" href="./plugin/ak_movie/view/css/style.css">
+  <div class="row">
+	<div class="col-lg-12 main">
+	<div class="card">
+		<div class="card-header">
+		     <div class="small line-height-2"><b style="color: #31C177;">正在播放: <i class="fa fa-volume-down fa-2" aria-hidden="true"></i></b><span class="tittext" id="tittext"> 暂无放映 </span>
+		     </div>
+		</div>
+        <div class="card-body">
+        <!--视频box区域-->
+		<iframe id="palybox" src="<?php echo setting_get('mrjk');?><?=$url?>" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen="true" allowtransparency="true">	
+		</iframe>
+
+				<div class="url-box">
+					<div class="input-group">
+						<input type="text" id="url" class="form-control url-text" aria-label="Text input with segmented button dropdown" placeholder="请粘贴视频网址>ㅂ<ﾉ ☆" title="请复制你想要看的视频网址，粘贴到此处点击播放即可！">
+						<div class="input-group-addon">
+							<select class="url-c url-text" title="如发现视频无法正常播放请尝试更换视频线路！" id="jk">
+								<?php echo setting_get('jiekou');?>
+							</select>
+						</div>
+						<div class="input-group-btn">
+
+							<button type="button" class="btn btn-primary btn-block mb-3" title="点击开始解析并开始播放" onclick="play()">解析播放</button>
+						</div>
+					</div>
+
+				</div>
+	    </div>
+	</div>
+     
+    <div class="card card-site-info ">
+			<div class="m-3">
+				<div class="small line-height-2"><b>提示 <i class="fa fa-volume-down fa-2" aria-hidden="true"></i></b>:<?php echo setting_get('gonggao');?></div>
+			</div>
+    </div>
+	<!--平台logo	-->
+		<div class="card card-thread">
+			<div class="logo-container ">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="title-tit">
+							<h4>支持以下网站视频</h4>
+							<p>敬请关注，近期将开放支持更多平台。</p>
+						</div>
+					</div>
+				</div>
+				<!--第一行-->
+				<div class="row">
+					<div class="col-xs-4 col-sm-2">
+						<div class="logo-lie">
+							<a href="http://vip.iqiyi.com/" target="_blank" title="爱奇艺会员">
+								<img class="img-responsive" src="./plugin/ak_movie/view/img/iqiyilogo.png" />
+							</a>
+						</div>
+					</div>
+					<div class="col-xs-4 col-sm-2 ">
+						<div class="logo-lie">
+							<a href="http://film.qq.com/" target="_blank" title="腾讯会员中心">
+								<img class="img-responsive" src="./plugin/ak_movie/view/img/qqlogo.png" />
+							</a>
+						</div>
+					</div>
+					<div class="col-xs-4 col-sm-2 ">
+						<div class="logo-lie">
+							<a href="http://vip.youku.com/" target="_blank" title="优酷会员中心">
+								<img class="img-responsive" src="./plugin/ak_movie/view/img/youkulogo.png" />
+							</a>
+						</div>
+					</div>
+					<div class="col-xs-4 col-sm-2 ">
+						<div class="logo-lie">
+							<a href="http://www.mgtv.com/vip/" target="_blank" title="芒果会员中心">
+								<img class="img-responsive" src="./plugin/ak_movie/view/img/hunantvlogo.png" />
+							</a>
+						</div>
+					</div>
+					<div class="col-xs-4 col-sm-2">
+						<div class="logo-lie">
+							<a href="http://yuanxian.le.com/" target="_blank" title="乐视会员中心">
+								<img class="img-responsive" src="./plugin/ak_movie/view/img/letvlogo.png" />
+							</a>
+						</div>
+					</div>
+					<div class="col-xs-4 col-sm-2">
+						<div class="logo-lie">
+							<a href="http://vip.tudou.com" target="_blank" title="土豆会员中心">
+								<img class="img-responsive" src="./plugin/ak_movie/view/img/tudoulogo.png" />
+							</a>
+						</div>
+					</div>
+				</div>
+				<!--第一行结束-->
+
+				<!--第二行开始-->
+				<div class="row">
+					<div class="col-xs-4 col-sm-2">
+						<div class="logo-lie">
+							<a href="http://www.baofeng.com/" target="_blank" title="暴风会员">
+								<img class="img-responsive" src="./plugin/ak_movie/view/img/baofeng.png" />
+							</a>
+						</div>
+					</div>
+					<div class="col-xs-4 col-sm-2 ">
+						<div class="logo-lie">
+							<a href="http://vip.1905.com/" target="_blank" title="1905电影网视频">
+								<img class="img-responsive" src="./plugin/ak_movie/view/img/1905logo.png" />
+							</a>
+						</div>
+					</div>
+					<div class="col-xs-4 col-sm-2 ">
+						<div class="logo-lie">
+							<a href="http://vip.kankan.com/" target="_blank" title="天天看看">
+								<img class="img-responsive" src="./plugin/ak_movie/view/img/kankan.png" />
+							</a>
+						</div>
+					</div>
+					<div class="col-xs-4 col-sm-2 ">
+						<div class="logo-lie">
+							<a href="http://www.pptv.com/" target="_blank" title="PPTV聚力">
+								<img class="img-responsive" src="./plugin/ak_movie/view/img/pptv.png" />
+							</a>
+						</div>
+					</div>
+					<div class="col-xs-4 col-sm-2">
+						<div class="logo-lie">
+							<a href="http://www.yinyuetai.com/" target="_blank" title="音悦台MV">
+								<img class="img-responsive" src="./plugin/ak_movie/view/img/yinyuetailogo.png" />
+							</a>
+						</div>
+					</div>
+					<div class="col-xs-4 col-sm-2">
+						<div class="logo-lie">
+							<a href="http://www.56.com/" target="_blank" title="56视频">
+								<img class="img-responsive" src="./plugin/ak_movie/view/img/56logo.png" />
+							</a>
+						</div>
+					</div>
+				</div>
+				<!--第二行结束-->
+
+				<!--第三行开始-->
+				<div class="row">
+
+					<div class="col-xs-4 col-sm-2">
+						<div class="logo-lie">
+							<a href="http://www.fun.vip" target="_blank" title="风行视频">
+								<img class="img-responsive" src="./plugin/ak_movie/view/img/fengxing.png" />
+							</a>
+						</div>
+					</div>
+					<div class="col-xs-4 col-sm-2 ">
+						<div class="logo-lie">
+							<a href="http://movie.ku6.com/" target="_blank" title="酷6视频">
+								<img class="img-responsive" src="./plugin/ak_movie/view/img/ku6logo.png" />
+							</a>
+						</div>
+					</div>
+					<div class="col-xs-4 col-sm-2 ">
+						<div class="logo-lie">
+							<a href="http://vip.wasu.cn/" target="_blank" title="WASU华数视频">
+								<img class="img-responsive" src="./plugin/ak_movie/view/img/wasulogo.png" />
+							</a>
+						</div>
+					</div>
+					<div class="col-xs-4 col-sm-2 ">
+						<div class="logo-lie">
+							<a href="http://video.sina.com.cn/" target="_blank" title="新浪视频">
+								<img class="img-responsive" src="./plugin/ak_movie/view/img/sinalogo.png" />
+							</a>
+						</div>
+					</div>
+					<div class="col-xs-4 col-sm-2">
+						<div class="logo-lie">
+							<a href="https://film.sohu.com/" target="_blank" title="搜狐视频">
+								<img class="img-responsive" src="./plugin/ak_movie/view/img/sohulogo.png" />
+							</a>
+						</div>
+					</div>
+					<div class="col-xs-4 col-sm-2">
+						<div class="logo-lie">
+							<a href="http://www.baomihua.com/" target="_blank" title="爆米花">
+								<img class="img-responsive" src="./plugin/ak_movie/view/img/baomihualogo.png" />
+							</a>
+						</div>
+					</div>
+				</div>
+				<!--第三行结束-->
+				<div class="row">
+
+					<div class="col-xs-4 col-sm-2">
+						<div class="logo-lie">
+							<a target="_blank" title="看看新闻网视频">
+								<img class="img-responsive" src="./plugin/ak_movie/view/img/kankannewslogo.png" />
+							</a>
+						</div>
+					</div>
+					<div class="col-xs-4 col-sm-2 ">
+						<div class="logo-lie">
+							<a target="_blank" title="糖豆视频">
+								<img class="img-responsive" src="./plugin/ak_movie/view/img/tangdoulogo.png" />
+							</a>
+						</div>
+					</div>
+					<div class="col-xs-4 col-sm-2 ">
+						<div class="logo-lie">
+							<a href="http://tv.cctv.com/" target="_blank" title="央视网">
+								<img class="img-responsive" src="./plugin/ak_movie/view/img/cntvlogo.png" />
+							</a>
+						</div>
+					</div>
+					<div class="col-xs-4 col-sm-2 ">
+						<div class="logo-lie">
+							<a href="http://www.acfun.cn/" target="_blank" title="Ac弹幕网">
+								<img class="img-responsive" src="./plugin/ak_movie/view/img/acfun.png" />
+							</a>
+						</div>
+					</div>
+					<div class="col-xs-4 col-sm-2">
+						<div class="logo-lie">
+							<a href="http://www.bilibili.com/" target="_blank" title="哔哩哔哩">
+								<img class="img-responsive" src="./plugin/ak_movie/view/img/bilibili.png" />
+							</a>
+						</div>
+					</div>
+					<div class="col-xs-4 col-sm-2">
+						<div class="logo-lie">
+							<a href="http://www.aipai.com/" target="_blank" title="爱拍原创">
+								<img class="img-responsive" src="./plugin/ak_movie/view/img/aipai.png" />
+							</a>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	<!--logo结束-->
+    </div>
+  </div>
+<script src="./plugin/ak_movie/view/js/movie.js" ></script>
+
+
+
+<!--{hook index_end.htm}-->
+
+<?php include _include(APP_PATH.'view/htm/footer.inc.htm');?>
+
+<!--{hook index_js.htm}-->
+
+<script type="text/javascript">
+$('#nav li[fid="movie"]').addClass('active');
+</script>
